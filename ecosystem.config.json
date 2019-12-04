@@ -1,0 +1,51 @@
+{
+  "apps": [{
+    "name": "engine",
+    "script": "./bin/server.js",
+    "instances": "1",
+    "exec_mode": "fork",
+    "watch": true,
+    "max_memory_restart": "1500M",
+    "node_args": ["--inspect=9000", "--max_old_space_size=1024"],
+    "ignore_watch": [
+      "node_modules",
+      ".gitignore",
+      ".gitlab-ci.yml",
+      "test",
+      "logs"
+    ],
+    "error_file": "../pm2Logs/engine/err.log",
+    "out_file": "../pm2Logs/engine/out.log",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_test": {
+      "NODE_ENV": "test",
+      "PORT": 80
+    },
+    "env_production": {
+      "NODE_ENV": "production",
+      "PORT": 80
+
+    }
+  }],
+  "deploy": {
+    "production": {
+      "user": "node",
+      "host": [
+        "localhost"
+      ],
+      "ref": "origin/master",
+      "repo": "git@github.com:repo.git",
+      "path": "/home/www/production",
+      "pre-setup": "echo 'commands or local script path to be run on the host before the setup process starts'",
+      "post-setup": "echo 'commands or a script path to be run on the host after cloning the repo'",
+      "pre-deploy-local": "echo 'This is a local executed command'",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+
+syntax = "proto3";
+
+
+package mqttMessage;
+
+// The greeting service definition.
+service MqttMessageEmitter {
+  // Sends a greeting
+  rpc SayWelcome (WelcomeRequest) returns (WelcomeReply) {}
+  rpc SetPlexusData (PlexusData) returns (Empty) {}
+  rpc WatchPlexusData (Empty) returns (stream PlexusData) {}
+  rpc SetSnapShotData (SnapShotData) returns (Empty) {}
+  rpc WatchSnapShotData (Empty) returns (stream SnapShotData) {}
+}
+
+// The request message containing the user's name.
+message WelcomeRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message WelcomeReply {
+  string message = 1;
+}
+
+message PlexusData{
+  string machineID=1;
+  string time_stamp = 2;
+  string serialNumber= 3;
+  string sync_token= 4;
+  map<string,string> triggers=5;
+  map<string,string> sensorData=6;
+  optional string timeuuid =7;
+  optional string site_time =8;
+}
+
+message SnapShotData{
+ string machineID=1;
+ int32 time_stamp=2;       
+ int32 rack_count_ss=3;
+ int32 drain_seconds_ss=4; 
+ map <string,int32> temperature_ss=5;   
+ map <string,int32> conductivity_ss=6;  
+ string probe_scale_ss=7;
+ string controller_mode_ss=8;
+ string feeder_status_ss=9;
+ string machine_ss=10; 
+ string operating_mode_ss=11; 
+ string trigger_bits_ss=12;  
+}
+
+//message {}
+
+
+message Empty {}

@@ -1,0 +1,1 @@
+const stackimpact = require('stackimpact');

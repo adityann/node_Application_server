@@ -1,0 +1,31 @@
+{
+    "signal": "SIGINT",
+    "restartable": "rs",
+    "ignore": [
+        ".git",
+        "node_modules/**/node_modules"
+    ],
+    "verbose": true,
+    "events": {
+        "restart": "osascript -e 'display notification \"app restarted\" with title \"nodemon\"'"
+    },
+    "execMap": {
+        "js": "node --harmony"
+    },
+    "watch": [
+        ".env",
+        "config",
+        "startup",
+        "controller",
+        "middeleware",
+        "routes",
+        "bin",
+        "util",
+        "app.js",
+        "nodemon.json"
+    ],
+    "env": {
+        "NODE_ENV": "development"
+    },
+    "ext": "js json"
+}

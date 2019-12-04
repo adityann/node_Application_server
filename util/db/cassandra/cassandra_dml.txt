@@ -1,0 +1,41 @@
+CREATE TABLE IF not EXISTS  intellidish.machine_kpi (
+   id UUID,machine_id text,date date,kpi text,
+   value float,
+   value_us float,
+   PRIMARY KEY (machine_id,date,kpi)) WITH CLUSTERING ORDER BY (date desc,kpi ASC);
+
+Alter table machine_kpi add value_us float IF not EXISTS;
+
+
+
+ CREATE TABLE IF not EXISTS intellidish.Plexus_Data(ID UUID,machine_id VARCHAR,device_id VARCHAR,sync_token VARCHAR, serial_Number VARCHAR,wash_trigger int,rinse_trigger int,fill_trigger int,drain_trigger int,machine_trigger int, c3m_conductivity_BU INT,Conductivity_BU INT,c3m_conductivit_M INT,Conductivity_M INT,Pre_wash_temperature INT, pre_wash_status varchar,Wash_temperature INT,Rinse_temperature INT,Time_stamp VARCHAR,Divojet_water INT, Fill_water INT,Rinse_water INT,Electricity_meter INT, c3m_conductivity_bu_flag VARCHAR, wash_temperature_status VARCHAR,rinse_temperature_status VARCHAR,avg_rinse_water_flow_rate FLOAT,  avg_rinse_water_flow_rate_status VARCHAR, PRIMARY KEY(machine_id, Time_stamp,id)) WITH CLUSTERING ORDER BY (Time_stamp Desc,id desc) ;
+
+
+CREATE TABLE IF NOT EXISTS intellidish.parameters_hygiene(id uuid,
+ machine_id VARCHAR,epoc_time int, site_time timestamp,
+avg_detergent_concentration int, avg_pre_wash_temperature_celsius int, avg_rinse_temperature_celsius int, 
+avg_wash_temperature_celsius int,avg_pre_wash_temperature_fahrenheit int, avg_rinse_temperature_fahrenheit int, 
+avg_wash_temperature_fahrenheit int,wash_cycle int,
+PRIMARY KEY (machine_id, site_time, id)) WITH CLUSTERING ORDER BY (site_time ASC,id ASC);
+
+CREATE TABLE IF NOT EXISTS alerts(id uuid,
+machine_id VARCHAR,
+alert_id int, 
+alert varchar, 
+time_set timestamp, 
+time_clear timestamp, 
+clear_method varchar, 
+priority varchar, 
+issue_type varchar,
+set_counter int,
+clear_counter int,
+PRIMARY KEY (machine_id, alert_id, id)) WITH CLUSTERING ORDER BY (alert_id ASC,id ASC);
+
+
+Alter TABLE parameters_hygiene add avg_pre_wash_temperature_celsius int;
+Alter TABLE parameters_hygiene add avg_rinse_temperature_celsius int;
+Alter TABLE parameters_hygiene add avg_rinse_temperature_fahrenheit int;
+
+
+
+

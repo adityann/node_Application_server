@@ -1,0 +1,74 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0",
+      "title": "Intellidish",
+      "description": "TODO: Add Description",
+      "contact": {}
+    },
+    "host": "localhost:3002",
+    "basePath": "/intellidish",
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/machinedetails": {
+        "post": {
+          "description": "TODO: Add Description",
+          "summary": "localhost:3002/intellidish/machinedetails",
+          "tags": [
+            "MachineDetails"
+          ],
+          "operationId": "MachinedetailsPost",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          }
+        }
+      },
+      "/hierarchy": {
+        "get": {
+          "description": "TODO: Add Description",
+          "summary": "localhost:3002/intellidish/hierarchy",
+          "tags": [
+            "Misc"
+          ],
+          "operationId": "HierarchyGet",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "type": "string",
+              "description": ""
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          }
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "Misc",
+        "description": ""
+      }
+    ]
+}
